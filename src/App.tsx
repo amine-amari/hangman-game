@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 import words from './WordList.json'
 import './App.css'
 import HangmanDrawing from './Components/HangmanDrawing'
@@ -15,13 +15,23 @@ function App() {
 
   const incorrectLetters = guessedLetters.filter((letter) => !wordToGuess.includes(letter))
 
-  console.log(wordToGuess)
+  const addGuessedLetter = useCallback(
+    (letter: string) => {
+      if (guessedLetters.includes(letter)) return
+      setGuessedLetters(curreentLetters => [...curreentLetters, letter])
+    },
+    [guessedLetters]
+  )
   return (
     <div className="App">
       <div className='win-lose-section'> Lose Win</div>
       <HangmanDrawing numberOfGuesses={incorrectLetters.length}  />
       <HangmanWord guessedLetters={guessedLetters} wordToGuess={wordToGuess}/>
-      <Keyboard />
+      <Keyboard 
+        activeLetters={guessedLetters.filter((letter) => wordToGuess.includes(letter))}
+        inactiveLetters={incorrectLetters}
+        addGuessedLetter={addGuessedLetter}
+      />
     </div>
   )
 }

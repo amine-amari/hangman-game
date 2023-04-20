@@ -18,12 +18,12 @@
     color: black;
 }
 
-.letter-btn.active {
+.letter-btn-active {
     background-color: hsl(200, 100%, 50%);
     color: white;
 }
 
-.letter-btn.inactive {
+.letter-btn-inactive {
     opacity: .3;
 }
 
