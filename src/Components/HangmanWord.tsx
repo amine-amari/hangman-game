@@ -1,13 +1,15 @@
 import './HangmanWord.css'
 
-function HangmanWord() {
+type HangmanWordProps = {
+  guessedLetters: string[]
+  wordToGuess: string
+}
 
-  const word = "test"
-  const guessedLetters = ["t", "e", "g"]
+function HangmanWord({guessedLetters, wordToGuess}: HangmanWordProps) {
 
   return (
     <div className="hangman-word-container">
-      {word.split("").map((letter, index) => (
+      {wordToGuess.split("").map((letter, index) => (
         <span className='letter-container' key={index}>
           <span className={`${guessedLetters.includes(letter) ? "letter-visible" : "letter-hidden"}`}>
             {letter}
