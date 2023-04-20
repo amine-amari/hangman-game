@@ -13,11 +13,13 @@ function App() {
 
   const [guessedLetters, setGuessedLetters] = useState<string[]>([])
 
+  const incorrectLetters = guessedLetters.filter((letter) => !wordToGuess.includes(letter))
+  
   console.log(wordToGuess)
   return (
     <div className="App">
       <div className='win-lose-section'> Lose Win</div>
-      <HangmanDrawing />
+      <HangmanDrawing numberOfGuesses={incorrectLetters.length}  />
       <HangmanWord />
       <Keyboard />
     </div>
